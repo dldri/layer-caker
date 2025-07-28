@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { PortableText } from 'next-sanity';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { POST_QUERY } from '@/sanity/lib/queries';
+import { components } from '@/sanity/portable-text-components';
 
 export default async function Page({
   params,
@@ -36,6 +38,11 @@ export default async function Page({
         />
       ) : null}
       <h1 className="text-balance font-bold text-4xl">{post?.title}</h1>
+      {post?.body ? (
+        <div className="prose">
+          <PortableText components={components} value={post.body} />
+        </div>
+      ) : null}
       <hr />
       <Link href="/posts">&larr; Return to index</Link>
     </main>
