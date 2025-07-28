@@ -5,6 +5,7 @@ import { PortableText } from 'next-sanity';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { POST_QUERY } from '@/sanity/lib/queries';
+import { components } from '@/sanity/portable-text-components';
 
 export default async function Page({
   params,
@@ -39,7 +40,7 @@ export default async function Page({
       <h1 className="text-balance font-bold text-4xl">{post?.title}</h1>
       {post?.body ? (
         <div className="prose">
-          <PortableText value={post.body} />
+          <PortableText components={components} value={post.body} />
         </div>
       ) : null}
       <hr />
